@@ -1,3 +1,7 @@
+----#Before configure
+
+clang-13 -S -emit-llvm (filename).c
+
 ----#Configure
 
 cmake --preset debug
