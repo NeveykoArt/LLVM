@@ -1,4 +1,4 @@
-#include <llvmlib/callgraph.hpp>
+#include <llvm-lib/callgraph.hpp>
 
 #include <sstream>
 #include <unordered_set>
@@ -24,8 +24,7 @@ std::string build_callgraph(llvm::Module *module) {
             if (callee_set.contains(std::string_view(callee.data()))) {
                 continue;
             }
-            res << fmt::format(
-                "{} -> {};\n", func.getName().data(), callee.data());
+            res << func.getName().data() << " -> " << callee.data() << ";\n";
             callee_set.insert(std::string_view(callee.data()));
         }
     }

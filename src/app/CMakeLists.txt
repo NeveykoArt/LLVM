@@ -24,6 +24,5 @@ target_link_libraries(
   ${target_name}
   PRIVATE
     ${llvm_libs}
-    cxxopts
     llvm
 )

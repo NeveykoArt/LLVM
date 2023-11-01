@@ -1,14 +1,18 @@
 set(target_name llvm)
 
-file(GLOB_RECURSE LIBLLVMGRAPH_SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/llvm-lib/*.cpp)
-
-file(GLOB_RECURSE LIBLLVMGRAPH_HEADER_FILES ${CMAKE_CURRENT_SOURCE_DIR}/llvm-lib/*.hpp)
-
-add_library(${target_name} STATIC ${LIBLLVMGRAPH_SOURCE_FILES} ${LIBLLVMGRAPH_HEADER_FILES})
+add_library(${target_name} STATIC
+  llvm-lib/callgraph.cpp
+  llvm-lib/defuse.cpp
+  llvm-lib/callgraph.hpp
+  llvm-lib/defuse.hpp)
 
 include(CompileOptions)
 set_compile_options(${target_name})
 
-target_include_directories(${target_name} PRIVATE ${LLVM_INCLUDE_DIRS} ${PROJECT_SOURCE_DIR}/src)
+target_include_directories(
+  ${target_name}
+  PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}
+)
 
 llvm_map_components_to_libnames(llvm_libs support core irreader analysis)

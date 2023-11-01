@@ -1,6 +1,4 @@
-#include <llvmlib/defuse.hpp>
-
-#include <fmt/format.h>
+#include <llvm-lib/defuse.hpp>
 
 #include <sstream>
 
@@ -19,7 +17,7 @@ std::string build_defuse_graph(llvm::Module *module) {
         for (auto i = llvm::inst_begin(func); i != llvm::inst_end(func); ++i) {
             for (const auto &operand : i->operands()) {
                 auto *value = operand.get();
-                auto instr = llvm::dyn_cast<llvm::Instruction>(value);
+                auto *instr = llvm::dyn_cast<llvm::Instruction>(value);
                 if (instr == nullptr) {
                     continue;
                 }
